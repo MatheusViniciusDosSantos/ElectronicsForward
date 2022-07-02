@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -19,8 +20,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "produto")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Getter
-@Setter
+@Data
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

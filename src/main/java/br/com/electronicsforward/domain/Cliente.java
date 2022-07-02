@@ -1,5 +1,6 @@
 package br.com.electronicsforward.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
@@ -13,8 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "fornecedor")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Getter
-@Setter
+@Data
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
