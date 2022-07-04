@@ -1,10 +1,10 @@
 package br.com.electronicsforward.controller;
 
-import br.com.electronicsforward.domain.Venda;
+import br.com.electronicsforward.domain.Compra;
 import br.com.electronicsforward.exception.BadResourceException;
 import br.com.electronicsforward.exception.ResourceAlreadyExistsException;
 import br.com.electronicsforward.exception.ResourceNotFoundException;
-import br.com.electronicsforward.service.VendaService;
+import br.com.electronicsforward.service.CompraService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,31 +22,31 @@ import java.net.URISyntaxException;
 
 @RestController
 @RequestMapping("/api")
-public class VendaController {
+public class CompraController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final int ROW_PER_PAGE = 5;
 	
 	@Autowired
-	private VendaService vendaService;
+	private CompraService compraService;
 	
-	@GetMapping(value = "/venda", consumes =
+	@GetMapping(value = "/compra", consumes =
 			MediaType.APPLICATION_JSON_VALUE, produces = 
 				MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Page<Venda>> findAll(
+	public ResponseEntity<Page<Compra>> findAll(
 			@RequestBody(required=false) String tipo, Pageable pegeable) {
 		if(StringUtils.isEmpty(tipo)) {
-			return ResponseEntity.ok(vendaService.findAll(pegeable));
+			return ResponseEntity.ok(compraService.findAll(pegeable));
 		} else {
-			return ResponseEntity.ok(vendaService.findAllByTipoPagamento(tipo, pegeable));
+			return ResponseEntity.ok(compraService.findAllByTipoPagamento(tipo, pegeable));
 		}
 	}
 	
-	@GetMapping(value = "/venda/{id}", produces =
+	@GetMapping(value = "/compra/{id}", produces =
 			MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Venda> findVendaById(@PathVariable long id) {
+	public ResponseEntity<Compra> findCompraById(@PathVariable long id) {
 		try {
-			Venda venda = vendaService.findById(id);
-			return ResponseEntity.ok(venda);
+			Compra compra = compraService.findById(id);
+			return ResponseEntity.ok(compra);
 		} catch (ResourceNotFoundException ex) {
 			logger.error(ex.getMessage());
 			
@@ -55,11 +55,11 @@ public class VendaController {
 	
 	}
 	
-	@PostMapping(value = "/venda")
-	public ResponseEntity<Venda> addVenda(@RequestBody Venda venda) throws URISyntaxException {
+	@PostMapping(value = "/compra")
+	public ResponseEntity<Compra> addCompra(@RequestBody Compra compra) throws URISyntaxException {
 		try {
-			Venda novaVenda = vendaService.save(venda);
-			return ResponseEntity.created(new URI("/api/venda" + novaVenda.getId())).body(venda);
+			Compra novaCompra = compraService.save(compra);
+			return ResponseEntity.created(new URI("/api/compra" + novaCompra.getId())).body(compra);
 		} catch (ResourceAlreadyExistsException ex) {
 			logger.error(ex.getMessage());
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
@@ -69,12 +69,12 @@ public class VendaController {
 		}
 	}
 	
-	@PutMapping(value = "/venda/{id}")
-	public ResponseEntity<Venda> updateVenda(@RequestBody Venda venda,
+	@PutMapping(value = "/compra/{id}")
+	public ResponseEntity<Compra> updateCompra(@RequestBody Compra compra,
 			@PathVariable long id) {
 		try {
-			venda.setId(id);
-			vendaService.update(venda);
+			compra.setId(id);
+			compraService.update(compra);
 			return ResponseEntity.ok().build();
 		} catch (ResourceNotFoundException ex) {
 			logger.error(ex.getMessage());
@@ -86,10 +86,10 @@ public class VendaController {
 		
 	}
 	
-	@DeleteMapping(path = "/venda/{id}")
-	public ResponseEntity<Void> deleteVendaById(@PathVariable long id) {
+	@DeleteMapping(path = "/compra/{id}")
+	public ResponseEntity<Void> deleteCompraById(@PathVariable long id) {
 		try {
-			vendaService.deleteById(id);
+			compraService.deleteById(id);
 			return ResponseEntity.ok().build();
 		} catch (ResourceNotFoundException ex) {
 			logger.error(ex.getMessage());
