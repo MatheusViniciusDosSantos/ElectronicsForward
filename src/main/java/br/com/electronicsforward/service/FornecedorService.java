@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Calendar;
+
 @Service
 public class FornecedorService {
 	
@@ -46,9 +48,11 @@ public class FornecedorService {
 			if(existsById(fornecedor.getId())) {
 				throw new ResourceAlreadyExistsException("Fornecedor com id: " + fornecedor.getId() + " já existe.");
 			}
+			fornecedor.setStatus('A');
+			fornecedor.setDataCadastro(Calendar.getInstance().getTime());
 			return fornecedorRepository.save(fornecedor);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar fornecedor");
 			exe.addErrorMessage("Fornecedor esta vazio ou nulo");
 			throw exe;
 		}
@@ -61,6 +65,7 @@ public class FornecedorService {
 			if (!existsById(fornecedor.getId())) {
 				throw new ResourceNotFoundException("Fornecedor não encontrado com o id: " + fornecedor.getId());
 			}
+			fornecedor.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			fornecedorRepository.save(fornecedor);
 		} else {
 			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");

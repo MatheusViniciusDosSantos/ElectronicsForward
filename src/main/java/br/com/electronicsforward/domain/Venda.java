@@ -1,5 +1,6 @@
 package br.com.electronicsforward.domain;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -34,7 +35,13 @@ public class Venda {
 
     private char status;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
     private Date dataCadastro;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+    private Date dataUltimaAlteracao;
 
     public Venda() {
         this.dataCadastro = Calendar.getInstance().getTime();

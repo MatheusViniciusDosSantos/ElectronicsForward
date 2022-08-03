@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Calendar;
+
 @Service
 public class FuncionarioService {
 	
@@ -48,9 +50,11 @@ public class FuncionarioService {
 			if(existsById(funcionario.getId())) {
 				throw new ResourceAlreadyExistsException("Funcionario com id: " + funcionario.getId() + " já existe.");
 			}
+			funcionario.setStatus('A');
+			funcionario.setDataCadastro(Calendar.getInstance().getTime());
 			return funcionarioRepository.save(funcionario);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar funcionario");
 			exe.addErrorMessage("Funcionario esta vazio ou nulo");
 			throw exe;
 		}
@@ -63,6 +67,7 @@ public class FuncionarioService {
 			if (!existsById(funcionario.getId())) {
 				throw new ResourceNotFoundException("Funcionario não encontrado com o id: " + funcionario.getId());
 			}
+			funcionario.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			funcionarioRepository.save(funcionario);
 		} else {
 			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");

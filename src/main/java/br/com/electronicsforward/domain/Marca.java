@@ -46,7 +46,5 @@ public class Marca implements Serializable {
 	@Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
 	private Date dataUltimaAlteracao;
 	
-	public Marca() {
-		dataCadastro = Calendar.getInstance().getTime();
-	}
+	public Marca() {}
 }

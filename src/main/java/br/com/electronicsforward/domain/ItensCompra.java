@@ -1,14 +1,10 @@
 package br.com.electronicsforward.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -20,7 +16,9 @@ import lombok.Data;
 @Table(name = "itens_compra")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Data
-public class ItensCompra {
+public class ItensCompra implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,11 +29,17 @@ public class ItensCompra {
 	
 	@Schema(description = "Quantidade de produtos")
 	private int quantidade;
-	
+
 	@Schema(description = "Produto")
+	@ManyToOne
+	@JoinColumn(name = "idProduto")
+	@NotBlank
 	private Produto produto;
-	
+
 	@Schema(description = "Compra dos produtos")
+	@ManyToOne
+	@JoinColumn(name = "idCompra")
+	@NotBlank
 	private Compra compra;
 
 	@Temporal(TemporalType.TIMESTAMP)

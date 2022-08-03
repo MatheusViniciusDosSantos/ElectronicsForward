@@ -2,13 +2,8 @@ package br.com.electronicsforward.domain;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -33,9 +28,15 @@ public class ItensVenda {
 	private int quantidade;
 	
 	@Schema(description = "Produto")
+	@ManyToOne
+	@JoinColumn(name = "idProduto")
+	@NotBlank
 	private Produto produto;
 	
 	@Schema(description = "Venda dos produtos")
+	@ManyToOne
+	@JoinColumn(name = "idVenda")
+	@NotBlank
 	private Venda venda;
 	
 	@Temporal(TemporalType.TIMESTAMP)

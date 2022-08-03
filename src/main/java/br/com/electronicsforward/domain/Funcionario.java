@@ -1,5 +1,6 @@
 package br.com.electronicsforward.domain;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,68 +8,39 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 @Entity
-@Table(name = "fornecedor")
+@Table(name = "funcionario")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Data
 public class Funcionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	public Funcionario() {}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
+	@NotBlank
 	private String nome;
 
 	private String cpf;
 
 	private char status;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
 	private Date dataCadastro;
 
-	public Funcionario() {
-		dataCadastro = Calendar.getInstance().getTime();
-	}
+	@Temporal(TemporalType.TIMESTAMP)
+	@Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+	private Date dataUltimaAlteracao;
 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
-	public char getStatus() {
-		return status;
-	}
-
-	public void setStatus(char status) {
-		this.status = status;
-	}
-	
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
 	
 }

@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Calendar;
+
 @Service
 public class TipoPagamentoService {
 	
@@ -48,9 +50,11 @@ public class TipoPagamentoService {
 			if(existsById(tipoPagamento.getId())) {
 				throw new ResourceAlreadyExistsException("Tipo de Pagamento com id: " + tipoPagamento.getId() + " já existe.");
 			}
+			tipoPagamento.setStatus('A');
+			tipoPagamento.setDataCadastro(Calendar.getInstance().getTime());
 			return tipoPagamentoRepository.save(tipoPagamento);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar tipo de pagamento");
 			exe.addErrorMessage("Tipo de Pagamento esta vazio ou nulo");
 			throw exe;
 		}
@@ -63,6 +67,7 @@ public class TipoPagamentoService {
 			if (!existsById(tipoPagamento.getId())) {
 				throw new ResourceNotFoundException("Tipo de Pagamento não encontrado com o id: " + tipoPagamento.getId());
 			}
+			tipoPagamento.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			tipoPagamentoRepository.save(tipoPagamento);
 		} else {
 			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");

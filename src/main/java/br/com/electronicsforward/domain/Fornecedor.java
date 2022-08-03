@@ -4,12 +4,10 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -25,10 +23,13 @@ public class Fornecedor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public Fornecedor() {}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
+	@NotBlank
 	private String nome;
 	
 	private String contato;
@@ -38,63 +39,14 @@ public class Fornecedor implements Serializable {
 	private String endereco;
 	
 	private char status;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
 	private Date dataCadastro;
-	
-	public Fornecedor() {
-		dataCadastro = Calendar.getInstance().getTime();
-	}
 
-	public long getId() {
-		return id;
-	}
+	@Temporal(TemporalType.TIMESTAMP)
+	@Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+	private Date dataUltimaAlteracao;
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getContato() {
-		return contato;
-	}
-
-	public void setContato(String contato) {
-		this.contato = contato;
-	}
-	
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-	
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	
-	public char getStatus() {
-		return status;
-	}
-
-	public void setStatus(char status) {
-		this.status = status;
-	}
-	
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
 	
 }

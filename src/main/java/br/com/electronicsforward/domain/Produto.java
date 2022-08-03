@@ -4,12 +4,10 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -25,10 +23,15 @@ public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public Produto() {
+		dataCadastro = Calendar.getInstance().getTime();
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
+	@NotBlank
 	private String nome;
 
 	private String descricao;
@@ -36,55 +39,14 @@ public class Produto implements Serializable {
 	private Double preco;
 	
 	private char status;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
 	private Date dataCadastro;
-	
-	public Produto() {
-		dataCadastro = Calendar.getInstance().getTime();
-	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+	private Date dataUltimaAlteracao;
 
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-	
-	public char getStatus() {
-		return status;
-	}
-
-	public void setStatus(char status) {
-		this.status = status;
-	}
-	
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
 }

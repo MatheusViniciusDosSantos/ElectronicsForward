@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Calendar;
+
 @Service
 public class CompraService {
 	
@@ -46,9 +48,11 @@ public class CompraService {
 			if(existsById(compra.getId())) {
 				throw new ResourceAlreadyExistsException("Compra com id: " + compra.getId() + " já existe.");
 			}
+			compra.setStatus('A');
+			compra.setDataCadastro(Calendar.getInstance().getTime());
 			return compraRepository.save(compra);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar compra");
 			exe.addErrorMessage("Compra esta vazio ou nulo");
 			throw exe;
 		}
@@ -61,6 +65,7 @@ public class CompraService {
 			if (!existsById(compra.getId())) {
 				throw new ResourceNotFoundException("Compra não encontrado com o id: " + compra.getId());
 			}
+			compra.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			compraRepository.save(compra);
 		} else {
 			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");

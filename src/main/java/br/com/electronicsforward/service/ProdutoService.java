@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Calendar;
+
 @Service
 public class ProdutoService {
 	
@@ -46,6 +48,8 @@ public class ProdutoService {
 			if(existsById(produto.getId())) {
 				throw new ResourceAlreadyExistsException("Produto com id: " + produto.getId() + " já existe.");
 			}
+			produto.setStatus('A');
+			produto.setDataCadastro(Calendar.getInstance().getTime());
 			return produtoRepository.save(produto);
 		} else {
 			BadResourceException exe = new BadResourceException("Erro ao salvar produto");
@@ -61,6 +65,7 @@ public class ProdutoService {
 			if (!existsById(produto.getId())) {
 				throw new ResourceNotFoundException("Produto não encontrado com o id: " + produto.getId());
 			}
+			produto.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			produtoRepository.save(produto);
 		} else {
 			BadResourceException exe = new BadResourceException("Erro ao salvar produto");
