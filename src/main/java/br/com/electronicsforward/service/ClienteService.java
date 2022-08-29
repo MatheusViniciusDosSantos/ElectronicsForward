@@ -68,7 +68,7 @@ public class ClienteService {
 			cliente.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			clienteRepository.save(cliente);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar cliente");
 			exe.addErrorMessage("Cliente esta vazio ou nulo");
 			throw exe;
 		}

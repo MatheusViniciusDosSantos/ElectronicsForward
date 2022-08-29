@@ -47,6 +47,7 @@ public class ItensVendaService {
             if(existsById(itensVenda.getId())) {
                 throw new ResourceAlreadyExistsException("Itens Venda com id: " + itensVenda.getId() + " já existe.");
             }
+            itensVenda.setStatus('A');
             itensVenda.setDataCadastro(Calendar.getInstance().getTime());
             return itensVendaRepository.save(itensVenda);
         } else {
@@ -61,6 +62,7 @@ public class ItensVendaService {
             if (!existsById(itensVenda.getId())) {
                 throw new ResourceNotFoundException("Itens Venda não encontrado com o id: " + itensVenda.getId());
             }
+            itensVenda.setDataUltimaAlteracao(Calendar.getInstance().getTime());
             itensVendaRepository.save(itensVenda);
         } else {
             BadResourceException exe = new BadResourceException("Erro ao salvar itens da venda");

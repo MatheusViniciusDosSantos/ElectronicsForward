@@ -36,11 +36,11 @@ public class Venda {
     private char status;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
+    @Schema(description = "Data de Cadastro da venda. Gerado na criação de uma nova venda")
     private Date dataCadastro;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+    @Schema(description = "Data de Atualização da venda. Gerado na alteração de uma nova venda")
     private Date dataUltimaAlteracao;
 
     public Venda() {

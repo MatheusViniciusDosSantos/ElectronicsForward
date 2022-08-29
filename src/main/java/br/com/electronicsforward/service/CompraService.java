@@ -68,7 +68,7 @@ public class CompraService {
 			compra.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			compraRepository.save(compra);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar compra");
 			exe.addErrorMessage("Compra esta vazio ou nulo");
 			throw exe;
 		}

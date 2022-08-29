@@ -70,7 +70,7 @@ public class FuncionarioService {
 			funcionario.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			funcionarioRepository.save(funcionario);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar funcionário");
 			exe.addErrorMessage("Funcionario esta vazio ou nulo");
 			throw exe;
 		}

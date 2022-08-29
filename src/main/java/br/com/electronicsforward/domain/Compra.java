@@ -36,11 +36,11 @@ public class Compra {
     private char status;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
+    @Schema(description = "Data de Cadastro da compra. Gerado na criação de uma nova compra")
     private Date dataCadastro;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+    @Schema(description = "Data de Atualização da compra. Gerado na alteração de uma nova compra")
     private Date dataUltimaAlteracao;
 
     public Compra() {}

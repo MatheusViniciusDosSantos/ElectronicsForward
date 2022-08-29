@@ -68,7 +68,7 @@ public class FornecedorService {
 			fornecedor.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			fornecedorRepository.save(fornecedor);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar fornecedor");
 			exe.addErrorMessage("Fornecedor esta vazio ou nulo");
 			throw exe;
 		}

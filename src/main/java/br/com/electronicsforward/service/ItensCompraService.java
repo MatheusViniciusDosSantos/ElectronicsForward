@@ -47,10 +47,11 @@ public class ItensCompraService {
             if(existsById(itensCompra.getId())) {
                 throw new ResourceAlreadyExistsException("Itens da compra com id: " + itensCompra.getId() + " já existe.");
             }
+            itensCompra.setStatus('A');
             itensCompra.setDataCadastro(Calendar.getInstance().getTime());
             return itensCompraRepository.save(itensCompra);
         } else {
-            BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+            BadResourceException exe = new BadResourceException("Erro ao salvar itens da compra");
             exe.addErrorMessage("Funcionario esta vazio ou nulo");
             throw exe;
         }
@@ -63,6 +64,7 @@ public class ItensCompraService {
             if (!existsById(itensCompra.getId())) {
                 throw new ResourceNotFoundException("itens Compra não encontrado com o id: " + itensCompra.getId());
             }
+            itensCompra.setDataUltimaAlteracao(Calendar.getInstance().getTime());
             itensCompraRepository.save(itensCompra);
         } else {
             BadResourceException exe = new BadResourceException("Erro ao salvar itens da compra");

@@ -41,11 +41,11 @@ public class Produto implements Serializable {
 	private char status;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
+	@Schema(description = "Data de Cadastro do produto. Gerado na criação de um novo produto")
 	private Date dataCadastro;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+	@Schema(description = "Data de Atualização do produto. Gerado na alteração de um novo produto")
 	private Date dataUltimaAlteracao;
 
 

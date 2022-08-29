@@ -26,11 +26,11 @@ public class TipoPagamento {
     private char status;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
+    @Schema(description = "Data de Cadastro do Tipo de Pagamento. Gerado na criação de um novo Tipo de Pagamento")
     private Date dataCadastro;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+    @Schema(description = "Data de Atualização do Tipo de Pagamento. Gerado na alteração de um novo Tipo de Pagamento")
     private Date dataUltimaAlteracao;
 
 }

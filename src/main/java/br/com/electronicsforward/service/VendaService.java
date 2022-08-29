@@ -68,7 +68,7 @@ public class VendaService {
 			venda.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			vendaRepository.save(venda);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar venda");
 			exe.addErrorMessage("Venda esta vazio ou nulo");
 			throw exe;
 		}

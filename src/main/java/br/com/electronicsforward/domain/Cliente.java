@@ -35,11 +35,11 @@ public class Cliente implements Serializable {
 	private char status;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
+	@Schema(description = "Data de Cadastro do cliente. Gerado na criação de um novo cliente")
 	private Date dataCadastro;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+	@Schema(description = "Data de Atualização do cliente. Gerado na alteração de um novo cliente")
 	private Date dataUltimaAlteracao;
 
 

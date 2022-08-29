@@ -39,7 +39,14 @@ public class ItensVenda {
 	@NotBlank
 	private Venda venda;
 	
+	@Schema(description = "Status dos itens da venda", example = "A")
+	private char status;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Schema(description = "Data de Cadastro dos itens da venda. Gerado na criação de uma nova venda")
 	private Date dataCadastro;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Schema(description = "Data de Atualização dos itens da venda.")
+	private Date dataUltimaAlteracao;
 }

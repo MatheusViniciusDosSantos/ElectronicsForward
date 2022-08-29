@@ -42,7 +42,14 @@ public class ItensCompra implements Serializable {
 	@NotBlank
 	private Compra compra;
 
+	@Schema(description = "Status dos itens da compra", example = "A")
+	private char status;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Schema(description = "Data de Cadastro dos itens da compra. Gerado na criação de uma nova compra")
 	private Date dataCadastro;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Schema(description = "Data de Atualização dos itens da compra.")
+	private Date dataUltimaAlteracao;
 }

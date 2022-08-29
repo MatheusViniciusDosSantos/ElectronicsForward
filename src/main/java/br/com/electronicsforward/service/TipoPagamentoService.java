@@ -70,7 +70,7 @@ public class TipoPagamentoService {
 			tipoPagamento.setDataUltimaAlteracao(Calendar.getInstance().getTime());
 			tipoPagamentoRepository.save(tipoPagamento);
 		} else {
-			BadResourceException exe = new BadResourceException("Erro ao salvar aluno");
+			BadResourceException exe = new BadResourceException("Erro ao salvar tipo de pagamento");
 			exe.addErrorMessage("Tipo de Pagamento esta vazio ou nulo");
 			throw exe;
 		}

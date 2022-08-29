@@ -123,11 +123,6 @@ public class ItensVendaController {
         }
     }
     
-    @GetMapping(value = "/itensVenda/venda/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Page<ItensVenda>> findByIdCompra(@PathVariable long id, Pageable pageable) throws ResourceNotFoundException {    	
-    	Page<ItensVenda> itensVenda = itensVendaService.findByIdVenda(id, pageable);
-            return ResponseEntity.ok(itensVenda);
-    }
     @Operation(summary = "Busca itens de uma venda específica", description = "Buscar os itens de uma venda específica", tags = {"itens_venda"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Sucesso",

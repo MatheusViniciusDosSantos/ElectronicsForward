@@ -34,11 +34,11 @@ public class Funcionario implements Serializable {
 	private char status;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Schema(description = "Data de Cadastro da marca. Gerado na criação de uma nova marca")
+	@Schema(description = "Data de Cadastro do Funcionário. Gerado na criação de um nova funcionário")
 	private Date dataCadastro;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Schema(description = "Data de Atualização da marca. Gerado na alteração de uma nova marca")
+	@Schema(description = "Data de Atualização do Funcionário. Gerado na alteração de um novo funcionário")
 	private Date dataUltimaAlteracao;
 
 
