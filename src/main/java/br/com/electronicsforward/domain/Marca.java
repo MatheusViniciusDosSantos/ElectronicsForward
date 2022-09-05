@@ -1,7 +1,6 @@
 package br.com.electronicsforward.domain;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;

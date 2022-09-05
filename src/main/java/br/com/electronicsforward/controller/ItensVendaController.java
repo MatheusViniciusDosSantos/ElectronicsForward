@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.electronicsforward.domain.ItensCompra;
 import br.com.electronicsforward.domain.ItensVenda;
 import br.com.electronicsforward.exception.ResourceNotFoundException;
 import br.com.electronicsforward.service.ItensVendaService;

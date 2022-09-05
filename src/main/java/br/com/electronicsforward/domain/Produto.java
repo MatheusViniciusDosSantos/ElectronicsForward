@@ -12,9 +12,6 @@ import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
 @Table(name = "produto")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

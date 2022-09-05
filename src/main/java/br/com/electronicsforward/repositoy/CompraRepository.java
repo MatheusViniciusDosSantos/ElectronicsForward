@@ -1,7 +1,6 @@
 package br.com.electronicsforward.repositoy;
 
 import br.com.electronicsforward.domain.Compra;
-import br.com.electronicsforward.domain.TipoPagamento;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

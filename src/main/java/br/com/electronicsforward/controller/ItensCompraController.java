@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import javax.validation.Valid;
 
-import br.com.electronicsforward.domain.Marca;
 import br.com.electronicsforward.exception.BadResourceException;
 import br.com.electronicsforward.exception.ResourceAlreadyExistsException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,7 +20,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

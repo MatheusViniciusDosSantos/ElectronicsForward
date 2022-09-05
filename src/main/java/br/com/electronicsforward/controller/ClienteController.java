@@ -1,11 +1,9 @@
 package br.com.electronicsforward.controller;
 
 import br.com.electronicsforward.domain.Cliente;
-import br.com.electronicsforward.domain.Cliente;
 import br.com.electronicsforward.exception.BadResourceException;
 import br.com.electronicsforward.exception.ResourceAlreadyExistsException;
 import br.com.electronicsforward.exception.ResourceNotFoundException;
-import br.com.electronicsforward.service.ClienteService;
 import br.com.electronicsforward.service.ClienteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

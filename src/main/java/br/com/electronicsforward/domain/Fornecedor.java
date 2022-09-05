@@ -1,7 +1,6 @@
 package br.com.electronicsforward.domain;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -11,9 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "fornecedor")
