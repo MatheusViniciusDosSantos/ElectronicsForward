@@ -38,6 +38,10 @@ public class Produto implements Serializable {
 	
 	private Double preco;
 	
+	@OneToOne
+    @JoinColumn(name = "idMarca")
+    private Marca marca;
+	
 	private char status;
 
 	@Temporal(TemporalType.TIMESTAMP)
