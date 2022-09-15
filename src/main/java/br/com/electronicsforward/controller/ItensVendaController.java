@@ -46,9 +46,7 @@ public class ItensVendaController {
     private ItensVendaService itensVendaService;
 
     @Operation(summary = "Busca itens da Venda", description = "Buscar todas os itens das vendas", tags = {"itens_venda"})
-    @GetMapping(value = "/itensVenda", consumes =
-            MediaType.APPLICATION_JSON_VALUE, produces =
-            MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/itensVenda")
     public ResponseEntity<Page<ItensVenda>> findAll(
             @Parameter(description = "Paginação", example = "{\"page\":0,\"size\":1}", allowEmptyValue = true)
             Pageable pageable)	{
