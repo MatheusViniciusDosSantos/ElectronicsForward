@@ -98,4 +98,17 @@ public class VendaController {
 		}
 	}
 
+	@GetMapping(value = "/calcularVenda/{id}", produces =
+			MediaType.APPLICATION_JSON_VALUE)
+	public Venda calcularVenda(@RequestBody Venda venda,  @PathVariable long id, Pageable pegeable) {
+		try {
+			venda.setId(id);
+			venda = vendaService.calcularValorFinal(venda, pegeable);
+			return venda;
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+		}
+	}
+
 }

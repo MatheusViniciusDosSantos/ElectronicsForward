@@ -20,6 +20,8 @@ public class Compra {
 
     private Double desconto;
 
+    private Double valorFinal;
+
     @OneToOne
     @JoinColumn(name = "idFornecedor")
     private Fornecedor fornecedor;

@@ -1,10 +1,12 @@
 package br.com.electronicsforward.service;
 
 import br.com.electronicsforward.domain.Compra;
+import br.com.electronicsforward.domain.ItensCompra;
 import br.com.electronicsforward.exception.BadResourceException;
 import br.com.electronicsforward.exception.ResourceAlreadyExistsException;
 import br.com.electronicsforward.exception.ResourceNotFoundException;
 import br.com.electronicsforward.repositoy.CompraRepository;
+import br.com.electronicsforward.repositoy.ItensCompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +20,8 @@ public class CompraService {
 	
 	@Autowired
 	private CompraRepository compraRepository;
-	
+	private ItensCompraRepository itensCompraRepository;
+
 	private boolean existsById(Long id) {
 		return compraRepository.existsById(id);
 	}
@@ -83,5 +86,17 @@ public class CompraService {
 	
 	}  public Long count() {
 		return compraRepository.count();
+	}
+
+	public Compra calcularValorFinal(Compra compra, Pageable pegeable) {
+		Page<ItensCompra> itensCompra = itensCompraRepository.findByIdCompra(compra.getId(), pegeable);
+		Double valorTotal = 0.0;
+		for (ItensCompra itenCompra: itensCompra) {
+			itenCompra.setValorCusto(itenCompra.getProduto().getPreco() * itenCompra.getQuantidade());
+			valorTotal += itenCompra.getValorCusto();
+		}
+		compra.setValorFinal(valorTotal * (1.0 - compra.getDesconto()));
+		compraRepository.save(compra);
+		return compra;
 	}
 }

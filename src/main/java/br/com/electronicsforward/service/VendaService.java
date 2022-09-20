@@ -1,15 +1,18 @@
 package br.com.electronicsforward.service;
 
+import br.com.electronicsforward.domain.ItensVenda;
 import br.com.electronicsforward.domain.Venda;
 import br.com.electronicsforward.exception.BadResourceException;
 import br.com.electronicsforward.exception.ResourceAlreadyExistsException;
 import br.com.electronicsforward.exception.ResourceNotFoundException;
+import br.com.electronicsforward.repositoy.ItensVendaRepository;
 import br.com.electronicsforward.repositoy.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Calendar;
 
@@ -18,7 +21,8 @@ public class VendaService {
 	
 	@Autowired
 	private VendaRepository vendaRepository;
-	
+	private ItensVendaRepository itensVendaRepository;
+
 	private boolean existsById(Long id) {
 		return vendaRepository.existsById(id);
 	}
@@ -83,5 +87,17 @@ public class VendaService {
 	
 	}  public Long count() {
 		return vendaRepository.count();
+	}
+
+	public Venda calcularValorFinal(Venda venda, Pageable pegeable) {
+		Page<ItensVenda> itensVendas = itensVendaRepository.findByIdVenda(venda.getId(), pegeable);
+		Double valorTotal = 0.0;
+		for (ItensVenda itenVenda: itensVendas) {
+			itenVenda.setValorVenda(itenVenda.getProduto().getPreco() * itenVenda.getQuantidade());
+			valorTotal += itenVenda.getValorVenda();
+		}
+		venda.setValorFinal(valorTotal * (1.0 - venda.getDesconto()));
+		vendaRepository.save(venda);
+		return venda;
 	}
 }

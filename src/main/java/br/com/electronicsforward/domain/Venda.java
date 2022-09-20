@@ -21,6 +21,8 @@ public class Venda {
 
     private Double desconto;
 
+    private Double valorFinal;
+
     @OneToOne
     @JoinColumn(name = "idCliente")
     private Cliente cliente;

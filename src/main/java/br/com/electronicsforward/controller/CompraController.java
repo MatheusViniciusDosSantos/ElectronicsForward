@@ -1,6 +1,7 @@
 package br.com.electronicsforward.controller;
 
 import br.com.electronicsforward.domain.Compra;
+import br.com.electronicsforward.domain.Venda;
 import br.com.electronicsforward.exception.BadResourceException;
 import br.com.electronicsforward.exception.ResourceAlreadyExistsException;
 import br.com.electronicsforward.exception.ResourceNotFoundException;
@@ -95,6 +96,19 @@ public class CompraController {
 			logger.error(ex.getMessage());
 			throw new ResponseStatusException(
 					HttpStatus.NOT_FOUND, ex.getMessage(), ex);
+		}
+	}
+
+	@GetMapping(value = "/calcularCompra/{id}", produces =
+			MediaType.APPLICATION_JSON_VALUE)
+	public Compra calcularCompra(@RequestBody Compra compra, @PathVariable long id, Pageable pegeable) {
+		try {
+			compra.setId(id);
+			compra = compraService.calcularValorFinal(compra, pegeable);
+			return compra;
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
 		}
 	}
 
